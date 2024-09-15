@@ -40,3 +40,5 @@ Coming soon:
 * Generate emoji depending on time of day
 * Make the map prettier using [prettymap](https://prettymapp.streamlit.app) GitHub repo
 
+## The "Learning" Folder
+A folder that documents every new concept I had to learn for this project. For now, that was using the sqlite3 library. 
