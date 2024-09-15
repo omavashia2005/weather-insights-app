@@ -38,5 +38,5 @@ Coming soon:
 * Suggesting outdoor activities based on temperature.
    * Work on customized suggestions depending on time
 * Generate emoji depending on time of day
-* Try to make the map prettier using [prettymap]([url](https://prettymapp.streamlit.app)) GitHub repo
+* Try to make the map prettier using [prettymap](https://prettymapp.streamlit.app) GitHub repo
 
