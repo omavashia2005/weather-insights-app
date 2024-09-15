@@ -17,7 +17,8 @@ The aim of this project is to:
    ```bash
    git clone https://github.com/omavashia2005/weather-insights-app.git
 2. Install the required packages (streamlit, pandas, matplotlib, json, csv, datetime, timezone)
-3. Enter this ``bash`` command on your terminal:
+3. Get an OpenWeatherMap API key
+4. Enter this ``bash`` command on your terminal:
    ```bash
    streamlit run weather.py
 
@@ -40,5 +41,6 @@ Coming soon:
 * Generate emoji depending on time of day
 * Make the map prettier using [prettymap](https://prettymapp.streamlit.app) GitHub repo
 
-## The "Learning" Folder
-A folder that documents every new concept I had to learn for this project. For now, that was using the ``sqlite3`` library. 
+## Additional Folders
+   * **Learning** : Folder documenting new concepts I had to learn for this project. For now, that was using the ``sqlite3`` library.
+   * **Resources** : Folder containing all the resources I used for testing. Currently, it contains the "resp.json" file that holds sample test data to avoid making multiple API calls while adding new features. 
