@@ -6,10 +6,10 @@ A basic Weather Insights App that uses the OpenWeatherMap API and Streamlit for 
 
 The aim of this project is to:
 * Familiarize myself with fetching APIs.
-* Manipulate JSON/CSV files for handling data using libraries such as Matplotlib and Pandas.
-* Understand and use Streamlit to develop a basic frontend.
+* Manipulate JSON/CSV files for handling data using libraries such as ``Matplotlib`` and ``Pandas``.
+* Understand and use ``Streamlit`` to develop a basic frontend.
 * Implement a simple integration of backend and frontend (full-stack development).
-* Implement MySQL and Python integration
+* Implement ``MySQL`` and Python integration
 
 ## How to Run
 
@@ -17,7 +17,7 @@ The aim of this project is to:
    ```bash
    git clone https://github.com/omavashia2005/weather-insights-app.git
 2. Install the required packages (streamlit, pandas, matplotlib, json, csv, datetime, timezone)
-3. Enter this bash command on your terminal:
+3. Enter this ``bash`` command on your terminal:
    ```bash
    streamlit run weather.py
 
@@ -41,4 +41,4 @@ Coming soon:
 * Make the map prettier using [prettymap](https://prettymapp.streamlit.app) GitHub repo
 
 ## The "Learning" Folder
-A folder that documents every new concept I had to learn for this project. For now, that was using the sqlite3 library. 
+A folder that documents every new concept I had to learn for this project. For now, that was using the ``sqlite3`` library. 
