@@ -1,11 +1,10 @@
-import pandas as pd
 import requests
-import pandas
+import pandas as pd
 import matplotlib.pyplot as plt
 import csv
 import json
-import ast
 import streamlit as st
+
 
 
 # Fetching weather data
