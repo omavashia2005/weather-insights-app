@@ -1,0 +1,49 @@
+{
+    "coord": {
+        "lon": 20,
+        "lat": 47
+    },
+    "weather": [
+        {
+            "id": 500,
+            "main": "Rain",
+            "description": "light rain",
+            "icon": "10n"
+        }
+    ],
+    "base": "stations",
+    "main": {
+        "temp": 284.23,
+        "feels_like": 283.8,
+        "temp_min": 284.13,
+        "temp_max": 284.29,
+        "pressure": 1012,
+        "humidity": 92,
+        "sea_level": 1012,
+        "grnd_level": 1001
+    },
+    "visibility": 10000,
+    "wind": {
+        "speed": 3.55,
+        "deg": 344,
+        "gust": 5.54
+    },
+    "rain": {
+        "1h": 0.31
+    },
+    "clouds": {
+        "all": 100
+    },
+    "dt": 1726426358,
+    "sys": {
+        "type": 2,
+        "id": 2004174,
+        "country": "HU",
+        "sunrise": 1726373879,
+        "sunset": 1726419151
+    },
+    "timezone": 7200,
+    "id": 719819,
+    "name": "Hungary",
+    "cod": 200
+}
