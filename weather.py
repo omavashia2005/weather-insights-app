@@ -1,30 +1,29 @@
 import requests
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
-import csv
 import json
 import streamlit as st
-
-
+from datetime import datetime, timedelta
 
 # Fetching weather data
-#
-# def get_weather(city, apiKey):
-#     base_url = "http://api.openweathermap.org/data/2.5/weather?"
-#     url = base_url + "appid=" + apiKey + "&q=" + city
-#
-#     response = requests.get(url)
-#     data = response.json()
-#
-#     with open('resp.json', 'w') as f:
-#         json.dump(data, f, indent=4)
-#
-#     if response.status_code == 200:
-#         return response.json()
-#
-#     else:
-#         st.error("City not found")
-#         return None
+
+def get_weather(city, apiKey):
+    base_url = "http://api.openweathermap.org/data/2.5/weather?"
+    url = base_url + "appid=" + apiKey + "&q=" + city
+
+    response = requests.get(url)
+    data = response.json()
+
+    with open('resp.json', 'w') as f:
+        json.dump(data, f, indent=4)
+
+    if response.status_code == 200:
+        return response.json()
+
+    else:
+        st.error("City not found")
+        return None
 
 
 # Temperature convert
@@ -38,7 +37,6 @@ def k_c(temp):
 
 # API key
 apiKey = open('/Users/omavashia/PycharmProjects/LeetCode/.venv/lib/api_key', 'r').read()
-
 
 # Helper function to return the correct emoji
 def get_weather_emoji(temp):
@@ -61,9 +59,13 @@ unit = st.radio("", ["Farenheit🇺🇸", "Celcius🇬🇧", "Kelvin🧠"])
 if City:
     path = '/Users/omavashia/PycharmProjects/LeetCode/resp.json'
 
-    weather_data = json.loads(open(path, 'r').read())
+    # weather_data = json.loads(open(path, 'r').read())
 
-    # weather_data = get_weather(City, apiKey)
+    weather_data = get_weather(City, apiKey)
+
+    # gets local time
+    local_time = datetime.utcnow() + timedelta(seconds=weather_data['timezone'])
+    st.subheader(f"Time in {City}: " + local_time.strftime('%H:%M'))
 
     if weather_data:
         temperature = weather_data['main']['temp']
@@ -93,3 +95,14 @@ if City:
             emoji = get_weather_emoji(int(feels_like - 273))
 
         st.subheader(" Feels like: " + unitChanger(unit, feels_like) + "\t" + emoji)
+        df = pd.DataFrame(
+            {
+                "col1": weather_data['main']['temp_min'],
+                "col2": np.random.randn(1000) / 50 + -122.4,
+                "col3": weather_data['coord']['lat'],
+                "col4": weather_data['coord']['lon']
+            }
+        )
+        st.map(df, latitude="col3", longitude="col4")
+
+        st.button("Suggest an activity")
