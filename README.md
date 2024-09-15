@@ -34,9 +34,9 @@ The aim of this project is to:
 
 Coming soon:
 * Plotting the temperature range for the day using Matplotlib.
-   * Will use another API to fetch weather data from the previous and next weeks, store it in a database, and plot using matplotlib 
+   * Use API to fetch weather data from the previous and next weeks, store it in a database, and plot using matplotlib 
 * Suggesting outdoor activities based on temperature.
    * Work on customized suggestions depending on time
 * Generate emoji depending on time of day
-* Try to make the map prettier using [prettymap](https://prettymapp.streamlit.app) GitHub repo
+* Make the map prettier using [prettymap](https://prettymapp.streamlit.app) GitHub repo
 
