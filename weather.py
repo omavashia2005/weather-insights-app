@@ -6,6 +6,7 @@ import json
 import streamlit as st
 from datetime import datetime, timedelta
 
+
 # Fetching weather data
 
 def get_weather(city, apiKey):
@@ -50,12 +51,10 @@ def get_weather_emoji(temp):
             return "❄️"
 
 # Frontend
-st.title("☁️Weather Insights App☁️")
-st.subheader("Enter city name to get the current weather")
-City = st.text_input("")
-st.subheader("🌡Pick a unit of temperature:")
-unit = st.radio("", ["Farenheit🇺🇸", "Celcius🇬🇧", "Kelvin🧠"])
-
+st.title("Weather Insights App")
+City = st.text_input("Enter City")
+st.header(" Pick a unit of temperature 🌡 ")
+unit = st.radio("Units: ", ["Farenheit🇺🇸", "Celcius🇬🇧", "Kelvin🧠"])
 if City:
     path = '/Users/omavashia/PycharmProjects/LeetCode/resp.json'
 
@@ -65,7 +64,8 @@ if City:
 
     # gets local time
     local_time = datetime.utcnow() + timedelta(seconds=weather_data['timezone'])
-    st.subheader(f"Time in {City}: " + local_time.strftime('%H:%M'))
+    st.header("Local Time :clock4:")
+    st.subheader(local_time.strftime('%H:%M'))
 
     if weather_data:
         temperature = weather_data['main']['temp']
@@ -86,7 +86,9 @@ if City:
 
         emoji = ""
         emoji = get_weather_emoji(temperature_to_c)
-        st.subheader(f" Weather in {City}: " + unitChanger(unit, temperature) + "\t" + emoji)
+        st.header("☁️ WEATHER ☁️")
+        st.subheader(f":blue-background[Temperature in  {City}]")
+        st.subheader(unitChanger(unit, temperature) + "\t" + emoji)
 
         feels_like = weather_data['main']['feels_like']
 
@@ -94,7 +96,9 @@ if City:
         if int(feels_like - 273) != temperature_to_c:
             emoji = get_weather_emoji(int(feels_like - 273))
 
-        st.subheader(" Feels like: " + unitChanger(unit, feels_like) + "\t" + emoji)
+
+        st.subheader(f":red-background[Feels Like]")
+        st.subheader(unitChanger(unit, feels_like) + "\t" + emoji)
         df = pd.DataFrame(
             {
                 "col1": weather_data['main']['temp_min'],
@@ -103,6 +107,8 @@ if City:
                 "col4": weather_data['coord']['lon']
             }
         )
+
+        st.subheader("Where is this? :earth_africa:")
         st.map(df, latitude="col3", longitude="col4")
 
         st.button("Suggest an activity")
