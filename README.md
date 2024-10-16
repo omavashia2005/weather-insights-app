@@ -29,7 +29,7 @@ The aim of this project is to:
 * Show the "feels like" temperature.
 * Switch between temperature units (Fahrenheit, Celsius, Kelvin).
 * Display local time
-* Added a "Suggest activities" button
+* Display weather data from the next 15 days a user-specified city.
 
 ## Future Additions
 
