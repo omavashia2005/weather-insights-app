@@ -17,7 +17,7 @@ unit = st.radio("Units: ", ["Fahrenheit", "Celsius", "Kelvin"])
 
 # Change path name here
 # ****************************************************************************************************************
-API_path = '/Users/omavashia/PycharmProjects/LeetCode/.venv/weather_app/api_key'
+API_path = '/Users/example_path/api_key'
 # ****************************************************************************************************************
 
 # API key
@@ -28,7 +28,7 @@ apiKey = open(API_path, 'r').read()
 # Historical Weather API settings (testing)
 
 # ******************************************Change path name here*************************************************
-hist_API_path = '/Users/omavashia/PycharmProjects/LeetCode/.venv/weather_app/hist_api_key'
+hist_API_path = '/Users/example_path/hist_api_key'
 # ****************************************************************************************************************
 
 # Historical data API Key
