@@ -1,6 +1,6 @@
 # Weather Insights App
 
-A basic Weather Insights App that uses the OpenWeatherMap and Visual Crossing APIs and Streamlit for the frontend.
+A Weather App that uses the OpenWeatherMap and Visual Crossing APIs and Streamlit for the frontend.
 
 ## Objectives
 
