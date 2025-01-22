@@ -1,5 +1,4 @@
 import statistics
-
 import requests
 import pandas as pd
 import numpy as np
@@ -7,6 +6,7 @@ import matplotlib.pyplot as plt
 import json
 import streamlit as st
 from datetime import datetime, timedelta
+import seaborn as sns
 
 # Current weather API settings, basic front end details
 
@@ -17,7 +17,7 @@ unit = st.radio("Units: ", ["Fahrenheit", "Celsius", "Kelvin"])
 
 # Change path name here
 # ****************************************************************************************************************
-API_path = '/Users/example_path/api_key'
+API_path = 'ENTER PATH NAME'
 # ****************************************************************************************************************
 
 # API key
@@ -26,9 +26,8 @@ apiKey = open(API_path, 'r').read()
 
 
 # Historical Weather API settings (testing)
-
 # ******************************************Change path name here*************************************************
-hist_API_path = '/Users/example_path/hist_api_key'
+hist_API_path = 'ENTER PATH'
 # ****************************************************************************************************************
 
 # Historical data API Key
@@ -129,11 +128,54 @@ if not City:
 path = '/resp.json'
 
 weather_data = get_weather(City, apiKey)
+def daylight_hrs():
+    with open("resp.json", 'r') as f:
+        json_data = json.load(f)
+
+    df1 = pd.json_normalize(json_data)
+    df_csv = df1.to_csv("resp.csv", index=False)
+    df = pd.read_csv('resp.csv')
+    df = df.drop(columns=['weather'])
+    df = df.drop(columns=['base'])
+
+    df['sunrise_time'] = df['sys.sunrise'].apply(lambda x: str(datetime.utcfromtimestamp(x)))
+    df['sunset_time'] = df['sys.sunset'].apply(lambda x: str(datetime.utcfromtimestamp(x)))
+
+    df[['sunrise_date', 'sunrise_time']] = df['sunrise_time'].str.split(' ', expand=True)
+    df[['sunset_date', 'sunset_time']] = df['sunset_time'].str.split(' ', expand=True)
+    df = df.drop(columns=['sunset_date'])
+    df = df.drop(columns=['sunrise_date'])
+
+    df['hrs'] = df['sys.sunset'] - df['sys.sunrise']
+    df['daylight_time'] = df['hrs'].apply(lambda x: str(datetime.utcfromtimestamp(x)))
+    df[['daylight_date', 'daylight_hours']] = df['daylight_time'].str.split(' ', expand=True)
+    df = df.drop(columns=['daylight_time'])
+    df = df.drop(columns=['daylight_date'])
+    df = df.drop(columns=['hrs'])
+    df = df.drop(columns=['sys.type'])
+
+    daylight_hours = df['daylight_hours'].to_string()
+
+    return daylight_hours[1:]
+
+def Pearson_Corr_Coeff():
+    df = pd.read_csv('resp.csv')
+    df['pearson_ratio'] = df['visibility'] / df['main.humidity']
+
+    sns.pairplot(df[['visibility', 'main.humidity', 'pearson_ratio']])
+    plt.suptitle('Pairplot: Visibility, Humidity, and Pearson Ratio', y=1.02)
+
+    st.pyplot(plt)
+
 
 # gets local time
 local_time = datetime.utcnow() + timedelta(seconds=weather_data['timezone'])
 st.header("Local Time :clock4:")
 st.subheader(local_time.strftime('%H:%M'))
+st.header("Daylight Hours :sunrise:")
+st.subheader(daylight_hrs())
+st.header("Pearson Visibility Ratio :eyes:")
+Pearson_Corr_Coeff()
 
 if weather_data:
 
@@ -186,8 +228,8 @@ if weather_data:
     st.map(df, latitude="col3", longitude="col4")
 
 
-    # Making historical data API call
-    _, forcast_Data = hist_data(City, "metric", histApiKey)
+    # # Making historical data API call
+    # _, forcast_Data = hist_data(City, "metric", histApiKey)
 
 
     st.subheader("Over the next 15 days:")
@@ -221,4 +263,3 @@ if weather_data:
             sum += forcast_Data[i]['feels_like']
 
         st.write(sum // len(forcast_Data))
-
