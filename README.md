@@ -7,6 +7,7 @@ A Weather App that uses the OpenWeatherMap and Visual Crossing APIs and Streamli
 The aim of this project is to:
 * Familiarize myself with fetching APIs.
 * Manipulate JSON/CSV files for handling data using libraries such as ``Matplotlib`` and ``Pandas``.
+* Implementing feature engineering 
 * Understand and use ``Streamlit`` to develop a basic frontend.
 * Implement a simple integration of backend and frontend (full-stack development).
 * Implement ``MySQL`` and Python integration
@@ -25,6 +26,8 @@ The aim of this project is to:
 ## Current Features
 
 * Display weather data for a user-specified city.
+* Displaying total number of daylight hours
+* Correlation between visibility and humidity
 * Generate unique emojis based on temperature (e.g., sunny, cloudy, windy).
 * Show the "feels like" temperature.
 * Switch between temperature units (Fahrenheit, Celsius, Kelvin).
