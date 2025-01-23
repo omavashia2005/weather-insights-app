@@ -1,4 +1,5 @@
 import statistics
+
 import requests
 import pandas as pd
 import numpy as np
@@ -17,7 +18,7 @@ unit = st.radio("Units: ", ["Fahrenheit", "Celsius", "Kelvin"])
 
 # Change path name here
 # ****************************************************************************************************************
-API_path = 'ENTER PATH NAME'
+API_path = 'ENTER API PATH'
 # ****************************************************************************************************************
 
 # API key
@@ -27,7 +28,7 @@ apiKey = open(API_path, 'r').read()
 
 # Historical Weather API settings (testing)
 # ******************************************Change path name here*************************************************
-hist_API_path = 'ENTER PATH'
+hist_API_path = 'ENTER API PATH'
 # ****************************************************************************************************************
 
 # Historical data API Key
@@ -160,10 +161,11 @@ def daylight_hrs():
 
 def Pearson_Corr_Coeff():
     df = pd.read_csv('resp.csv')
-    df['pearson_ratio'] = df['visibility'] / df['main.humidity']
 
-    sns.pairplot(df[['visibility', 'main.humidity', 'pearson_ratio']])
-    plt.suptitle('Pairplot: Visibility, Humidity, and Pearson Ratio', y=1.02)
+    sns.lmplot(x='visibility', y='clouds.all', data=df, aspect=1.5)
+    plt.title('Visibility vs Cloudiness')
+    plt.xlabel('Visibility')
+    plt.ylabel('Cloudiness')
 
     st.pyplot(plt)
 
@@ -174,7 +176,7 @@ st.header("Local Time :clock4:")
 st.subheader(local_time.strftime('%H:%M'))
 st.header("Daylight Hours :sunrise:")
 st.subheader(daylight_hrs())
-st.header("Pearson Visibility Ratio :eyes:")
+st.header("Visibility-Cloudiness Ratio :eyes:")
 Pearson_Corr_Coeff()
 
 if weather_data:
@@ -263,3 +265,6 @@ if weather_data:
             sum += forcast_Data[i]['feels_like']
 
         st.write(sum // len(forcast_Data))
+
+
+
