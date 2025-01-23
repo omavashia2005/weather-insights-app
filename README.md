@@ -27,7 +27,7 @@ The aim of this project is to:
 
 * Display weather data for a user-specified city.
 * Displaying total number of daylight hours
-* Correlation between visibility and humidity
+* Correlation between visibility and cloudiness
 * Generate unique emojis based on temperature (e.g., sunny, cloudy, windy).
 * Show the "feels like" temperature.
 * Switch between temperature units (Fahrenheit, Celsius, Kelvin).
