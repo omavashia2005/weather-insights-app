@@ -45,5 +45,5 @@ Coming soon:
 * Make the map prettier using [prettymap](https://prettymapp.streamlit.app) GitHub repo
 
 ## Additional Folders
-   * **Learning** : Folder documenting new concepts I had to learn for this project. For now, that was using the ``sqlite3`` library.
+   * **Learning** : Folder documenting new concepts I had to learn for this project. For now, that was using the ``sqlite3`` library and using ``Scikit-learn`` to train a basic linear regression model to predict rainfall for some US states and cities.
    * **Resources** : Folder containing all the resources I used for testing. Currently, it contains the "resp.json" file that holds sample test data to avoid making multiple API calls while adding new features. 
